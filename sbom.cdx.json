@@ -1,0 +1,38 @@
+{
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:5cc06c91-d171-51ab-84ba-a7d9243d9fae",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-10-12T06:12:05Z",
+    "component": {
+      "type": "application",
+      "name": "GEANT4",
+      "version": "134451a8f227",
+      "bom-ref": "pkg:generic/anticloud/GEANT4@134451a8f227",
+      "purl": "pkg:generic/anticloud/GEANT4@134451a8f227",
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    },
+    "properties": [
+      {
+        "name": "anticloud:source-commit",
+        "value": "134451a8f2272b9562651f0eaad704a48a569a66"
+      },
+      {
+        "name": "anticloud:source-url",
+        "value": ""
+      },
+      {
+        "name": "anticloud:tier",
+        "value": "tier-agent"
+      }
+    ]
+  },
+  "components": []
+}

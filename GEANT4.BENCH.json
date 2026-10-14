@@ -1,0 +1,372 @@
+{
+  "category": "NUCLEAR",
+  "checks": {
+    "01_loc_files": {
+      "check": "LOC / file census",
+      "detail": {
+        "blank_lines": 219157,
+        "code_files": 6739,
+        "comment_lines": 441628,
+        "effective_loc": 1039836,
+        "total_lines": 1700621
+      },
+      "metric": "loc",
+      "pass": true,
+      "threshold": "> 1000 effective LOC",
+      "value": 1039836
+    },
+    "02_licence": {
+      "check": "Licence classification gate",
+      "detail": {
+        "first_line": "Geant4 Software License",
+        "licence_class": "C",
+        "licence_file": "LICENSE",
+        "licence_sha256": "17baf212503b05da494dc05fe30b06f88ffa5452fa1a46fd7228875ad86b513a",
+        "rationale": "non-commercial/proprietary terms -> class C (read-only)",
+        "redistribution": "read-only reference; NEVER push; default when unknown/absent"
+      },
+      "pass": true,
+      "threshold": "licence_class in {A,B,C}; A required for push",
+      "value": "C"
+    },
+    "03_dependency_scan": {
+      "check": "Dependency inventory + forbidden-AI gate",
+      "detail": {
+        "declared_dependency_count": 0,
+        "dependencies": {},
+        "forbidden_ai_deps": [],
+        "manifests_found": []
+      },
+      "pass": true,
+      "threshold": "no pytorch/torch/transformers",
+      "value": 0
+    },
+    "04_sbom": {
+      "check": "SBOM generation",
+      "components_file_inline": [],
+      "detail": {
+        "bom_format": "CycloneDX",
+        "component_count": 0,
+        "format": "CycloneDX-1.5-lite",
+        "spec_version": "1.5",
+        "tool": "anticloud-bench/1.0"
+      },
+      "pass": false,
+      "threshold": "component_count > 0",
+      "value": 0
+    },
+    "05_git_health": {
+      "check": "Git provenance health",
+      "detail": {
+        "commit_count_shallow": "1",
+        "dirty_files": 0,
+        "distinct_authors_recent": 1,
+        "head_date": "2026-06-26 11:31:48 +0200",
+        "head_sha": "f3d5293d384757b8a228a099898b2b87cfa4023c",
+        "is_git_repo": true,
+        "last_author": "Gabriele Cosmo",
+        "remote_origin": "https://github.com/geant4/geant4"
+      },
+      "pass": true,
+      "threshold": "is_git_repo and head_sha present",
+      "value": "f3d5293d384757b8a228a099898b2b87cfa4023c"
+    },
+    "06_owasp_llm_top10": {
+      "check": "OWASP LLM Top 10",
+      "controls_met": 2,
+      "controls_total": 4,
+      "evidence": [
+        "LLM03 supply chain: no torch/transformers/pytorch dependency pulled in",
+        "LLM01: prompt-injection surface not applicable - no LLM runtime in product path"
+      ],
+      "framework": "OWASP Top 10 for LLM Apps (2025)",
+      "gaps": [
+        "LLM08: no dependency manifest -> unpinned supply chain",
+        "LLM09: overreliance - no model-evidence/eval harness in scope (no LLM product)"
+      ],
+      "note": "AI/LLM-latency checks explicitly EXCLUDED per policy; assessed only as supply-chain posture.",
+      "pass": false,
+      "score": 50.0,
+      "threshold": "score >= 70"
+    },
+    "07_owasp_top10": {
+      "check": "OWASP Top 10",
+      "controls_met": 4,
+      "controls_total": 5,
+      "evidence": [
+        "A07:2021 no hardcoded credentials found in scanned sources",
+        "A02:2021 no weak MD5 usage detected in first-party code",
+        "A02:2021 no TLS verification disabled (verify=False)",
+        "A06:2021 static-analysis config present and enforced in gate"
+      ],
+      "framework": "OWASP Top 10 (2021)",
+      "gaps": [
+        "A03:2021 4 injection sink pattern(s)"
+      ],
+      "pass": true,
+      "score": 80.0,
+      "threshold": "score >= 70"
+    },
+    "08_soc1": {
+      "check": "SOC 1",
+      "controls_met": 3,
+      "controls_total": 4,
+      "evidence": [
+        "CC6.1 logical access: no hardcoded secrets in source",
+        "CC7.3/CC7.4: versioned change history with 1 recent author(s)",
+        "CC7.2: automated static-analysis gate on every change"
+      ],
+      "framework": "AICPA SOC 1 (2017 revised)",
+      "gaps": [
+        "CC7.2: no CI workflow => no change-management evidence"
+      ],
+      "pass": true,
+      "score": 75.0,
+      "threshold": "score >= 70"
+    },
+    "09_soc2_type2": {
+      "check": "SOC 2 Type II",
+      "controls_met": 5,
+      "controls_total": 7,
+      "evidence": [
+        "CC6.1 logical access: no hardcoded secrets in source",
+        "CC7.3/CC7.4: versioned change history with 1 recent author(s)",
+        "CC7.2: automated static-analysis gate on every change",
+        "CC7.1/CC7.2: vulnerability-management documentation present",
+        "CC8.1: changelog documents change over time"
+      ],
+      "framework": "AICPA SOC 2 Type II (2017 revised, TSC)",
+      "gaps": [
+        "CC7.2: no CI workflow => no change-management evidence",
+        "CC7.1: no SBOM"
+      ],
+      "note": "Type II additionally requires an observation period; scored on control design + evidence present in the repository.",
+      "pass": true,
+      "score": 71.4,
+      "threshold": "score >= 70"
+    },
+    "10_nist_ai_rmf": {
+      "check": "NIST AI RMF",
+      "controls_met": 3,
+      "controls_total": 5,
+      "evidence": [
+        "GOVERN 1.1: deterministic, reproducible benchmark run recorded as JSON evidence",
+        "MEASURE 2.5: no unapproved ML model runtime in graph (measurable scope)",
+        "MANAGE 2.2: no unmanaged credential artefacts in source"
+      ],
+      "framework": "NIST AI RMF 1.0 (Playbook)",
+      "gaps": [
+        "MAP 2.3: benchmark not wired into CI",
+        "MANAGE 4.1: no AI system in scope - AI RMF risk register is N/A"
+      ],
+      "pass": false,
+      "score": 60.0,
+      "threshold": "score >= 70"
+    },
+    "11_nist_sp800_53": {
+      "check": "NIST SP 800-53 Rev.5",
+      "controls_met": 5,
+      "controls_total": 6,
+      "evidence": [
+        "SA-11: static code analysis performed in the build gate",
+        "IA-5: no authenticator material committed",
+        "AU-3/AU-10: change provenance recorded (1 recent authors)",
+        "SC-13: SHA-256 cryptographically protected artefacts",
+        "SI-7: integrity verifiable by pinned commit f3d5293d3847"
+      ],
+      "framework": "NIST SP 800-53 Rev.5 (moderate baseline)",
+      "gaps": [
+        "CM-10: no hash-pinned dependency lock"
+      ],
+      "pass": true,
+      "score": 83.3,
+      "threshold": "score >= 70"
+    },
+    "12_nist_csf": {
+      "check": "NIST CSF 2.0",
+      "controls_met": 4,
+      "controls_total": 5,
+      "evidence": [
+        "ID.AM-1: software inventory produced (SBOM + LOC census)",
+        "PR.AA-1: no embedded credentials in delivered artefacts",
+        "DE.CM-1: change monitoring via version control history",
+        "RS.AN-1: vulnerability-response artefacts present"
+      ],
+      "framework": "NIST CSF 2.0 (functions)",
+      "gaps": [
+        "PR.PS-1: no repeatable CI process"
+      ],
+      "pass": true,
+      "score": 80.0,
+      "threshold": "score >= 70"
+    },
+    "13_fedramp": {
+      "check": "FedRAMP Rev.5",
+      "controls_met": 2,
+      "controls_total": 5,
+      "evidence": [
+        "SA-11: static analysis configured in the release gate",
+        "AU-6: audit records present (1 recent authors)"
+      ],
+      "framework": "FedRAMP Rev.5 (20x20 moderate)",
+      "gaps": [
+        "SA-10: no CI change control",
+        "SA-25: 0 secret / 4 sink finding(s)",
+        "CM-8: no SBOM asset inventory"
+      ],
+      "note": "FedRAMP requires an agency ATO; this is a readiness gap assessment against the moderate baseline, not an authorization.",
+      "pass": false,
+      "score": 40.0,
+      "threshold": "score >= 70"
+    },
+    "14_pci_dss": {
+      "check": "PCI DSS v4.0.1",
+      "controls_met": 3,
+      "controls_total": 5,
+      "evidence": [
+        "Req 3/8: no hardcoded credentials/keys in source",
+        "Req 3.5: no weak MD5 use detected for key derivation",
+        "Req 6.3.2: vulnerability scanning configured in the build"
+      ],
+      "framework": "PCI DSS v4.0.1",
+      "gaps": [
+        "Req 6.4.3: no inventory to drive patch/vuln detection",
+        "Req 6.4.2: no automated change detection"
+      ],
+      "note": "Applicability depends on whether the artefact handles cardholder data.",
+      "pass": false,
+      "score": 60.0,
+      "threshold": "score >= 70"
+    },
+    "15_iso_27001": {
+      "check": "ISO/IEC 27001:2022",
+      "controls_met": 2,
+      "controls_total": 5,
+      "evidence": [
+        "A.5.17/A.8.4: authentication information not hardcoded",
+        "A.8.15/A.8.32: change logging via version control"
+      ],
+      "framework": "ISO/IEC 27001:2022 Annex A",
+      "gaps": [
+        "A.8.32: change management not automated",
+        "A.8.19: no hash-pinned dependency lock",
+        "IP-01: unknown licence blocks governed redistribution"
+      ],
+      "pass": false,
+      "score": 40.0,
+      "threshold": "score >= 70"
+    },
+    "16_mitre_attack": {
+      "check": "MITRE ATT&CK",
+      "controls_met": 5,
+      "controls_total": 7,
+      "evidence": [
+        "T1552.001 Credentials In Files: mitigated, no secrets in source",
+        "T1059.004 Unix Shell: no shell=True construction",
+        "T1557 Adversary-in-the-Middle: no disabled TLS verification",
+        "T1195 Supply Chain Compromise: commit f3d5293d3847 pinned for provenance",
+        "T1059.004: no remote-script pipe-to-shell bootstrap"
+      ],
+      "framework": "MITRE ATT&CK v17 (software supply chain + host techniques)",
+      "gaps": [
+        "T1059: eval() sink present",
+        "T1195.002: no CI gate to detect supply-chain drift"
+      ],
+      "pass": true,
+      "score": 71.4,
+      "threshold": "score >= 70"
+    },
+    "17_ml_trl": {
+      "check": "ML-TRL",
+      "controls_met": 4,
+      "controls_total": 5,
+      "evidence": [
+        "TRL-9 reproducibility: no unmeasured ML runtime in the graph",
+        "TRL-2 documented changes across versions",
+        "TRL-4 generalization: versions enumerated ({'CMakeLists.txt': '3.16...3.27'})",
+        "TRL-8/9: benchmark harness emits machine-readable JSON, no AI/LLM-latency measurement in scope (excluded by policy)"
+      ],
+      "framework": "NIST AI RMF / ML-TRL (technology readiness levels)",
+      "gaps": [
+        "TRL-6: no repeatable verification harness"
+      ],
+      "note": "ML-TRL dimensions assessed for software-integrity applicability; model-training TRL dimensions are N/A (no ML training in scope).",
+      "pass": true,
+      "score": 80.0,
+      "threshold": "score >= 70"
+    },
+    "18_ci_static_gate": {
+      "check": "CI + static-analysis gate",
+      "detail": {
+        "ci_present": false,
+        "ci_workflows": [],
+        "pass": false,
+        "static_analysis_configs": [
+          ".clang-format",
+          ".clang-tidy"
+        ],
+        "static_gate_present": true
+      },
+      "pass": false,
+      "threshold": "CI and static gate both present",
+      "value": true
+    }
+  },
+  "duration_seconds": 6622.159,
+  "excluded_by_policy": [
+    "all AI/LLM-latency benchmarks",
+    "pytorch",
+    "torch",
+    "transformers"
+  ],
+  "failed_checks": [
+    "04_sbom",
+    "06_owasp_llm_top10",
+    "10_nist_ai_rmf",
+    "13_fedramp",
+    "14_pci_dss",
+    "15_iso_27001",
+    "18_ci_static_gate"
+  ],
+  "generated_utc": "2026-10-05T14:25:58.994658+00:00",
+  "git": {
+    "commit_count_shallow": "1",
+    "dirty_files": 0,
+    "distinct_authors_recent": 1,
+    "head_date": "2026-06-26 11:31:48 +0200",
+    "head_sha": "f3d5293d384757b8a228a099898b2b87cfa4023c",
+    "is_git_repo": true,
+    "last_author": "Gabriele Cosmo",
+    "remote_origin": "https://github.com/geant4/geant4"
+  },
+  "harness": "anticloud-bench/1.0",
+  "licence": {
+    "first_line": "Geant4 Software License",
+    "licence_class": "C",
+    "licence_file": "LICENSE",
+    "licence_sha256": "17baf212503b05da494dc05fe30b06f88ffa5452fa1a46fd7228875ad86b513a",
+    "rationale": "non-commercial/proprietary terms -> class C (read-only)",
+    "redistribution": "read-only reference; NEVER push; default when unknown/absent"
+  },
+  "path": "E:\\fenta\\Downloads\\The Anticloud\\ANTICLOUD_REPOS\\NUCLEAR\\GEANT4\\UPSTREAM_CLONE",
+  "repo": "GEANT4",
+  "schema": "anticloud.tier.bench/1.0",
+  "source_census": {
+    "blank_lines": 219157,
+    "code_files": 6739,
+    "comment_lines": 441628,
+    "effective_loc": 1039836,
+    "total_lines": 1700621
+  },
+  "summary": {
+    "all_pass": false,
+    "checks_failed": 7,
+    "checks_passed": 11,
+    "checks_total": 18,
+    "licence_class": "C",
+    "pass_rate": 61.1
+  },
+  "versioning": {
+    "CMakeLists.txt": "3.16...3.27"
+  }
+}

@@ -1,0 +1,20 @@
+# Upstream clone is fetched from the pinned upstream SHA; not part of this index.
+UPSTREAM_CLONE/
+
+# OS / editor noise
+Thumbs.db
+desktop.ini
+.DS_Store
+*.swp
+01_INVESTOR_PACKAGE/
+10_TECHNICAL_HANDOFF/
+25_MILLENNIUM_PROBLEM_PROPOSALS/
+28_TECHNICAL_WHITEPAPER/
+29_INVESTOR_MEMO/
+30_LOI/
+OFFICIAL_BENCHMARKS/
+anticloud/
+_PRIOR_DOCS/
+node_modules/
+*.csv
+
