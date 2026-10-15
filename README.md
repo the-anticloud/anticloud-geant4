@@ -1,14 +1,12 @@
 # GEANT4
 
-> [!NOTE] This site is under development. We will continue to add functionality and features over the coming months.
+> Geant4: A Simulation Toolkit Geant4 is a toolkit for the simulation of the passage of particles through matter. Its areas of application include high energy, nuclear and accelerator physics, as well as studies in medical and space science.
 
-**Category:** NUCLEAR · **Ecosystem:** unknown · **Vendored upstream:** https://github.com/OpenTOPAS/OpenTOPAS · **Pinned commit:** `134451a8f2272b9562651f0eaad704a48a569a66` · **Vendor:** Anticloud FZ LLE
-
-> **Note:** this package vendors `https://github.com/OpenTOPAS/OpenTOPAS` as the implementation for the `GEANT4` slot. The vendored repository name differs from the package name; the pin above is the exact commit vendored here.
+**Category:** NUCLEAR · **Ecosystem:** unknown · **Vendored upstream:** https://github.com/Geant4/geant4 · **Pinned commit:** `f3d5293d384757b8a228a099898b2b87cfa4023c` · **Vendor:** Anticloud FZ LLE
 
 ## What This Project Is
 
-[!NOTE] This site is under development. We will continue to add functionality and features over the coming months.
+Geant4: A Simulation Toolkit Geant4 is a toolkit for the simulation of the passage of particles through matter. Its areas of application include high energy, nuclear and accelerator physics, as well as studies in medical and space science.
 
 This is the upstream project, vendored at the pinned commit above and packaged offline-first. The 12 improvements Anticloud adds live in `anticloud/` and are described under *Anticloud Overlay* below. Every fact in this file traces to a file in this directory.
 
@@ -62,7 +60,7 @@ The upstream licence is preserved in `LICENSE` and `THIRD_PARTY_LICENSES/`. The 
 SHA3-256 of `BENCH.json`:
 
 ```
-1088dae187c8d892865466c03e895b5ce894f2e14f8d4921fe50acdcd9ae5111
+f456fc2e1be88b680d55e18ae7ade57d774b55d531ddcca3eda00871a33f0021
 ```
 
 Recompute the hash above and compare — any drift means the package has been tampered with and the seal is invalid. This is a self-assessment; no external audit has been performed and a SOC 2 / NIST independent audit is committed post-funding.

@@ -2,13 +2,11 @@
  "schema": "anticloud.tier-bench/1",
  "project": "GEANT4",
  "source": {
-  "repo_path": "E:\\fenta\\Downloads\\The Anticloud\\ANTICLOUD_REPOS\\NUCLEAR\\GEANT4\\UPSTREAM_CLONE",
   "git": {
-   "head": "134451a8f2272b9562651f0eaad704a48a569a66",
-   "url": "https://github.com/OpenTOPAS/OpenTOPAS",
-   "branch": "main",
-   "committed_at": "",
-   "sha_verified_from": "GitHub API substitute swap 2026-10-12 | unified 2026-10-14 (API-exists + content/clone anchor)"
+   "url": "https://github.com/Geant4/geant4",
+   "head": "f3d5293d384757b8a228a099898b2b87cfa4023c",
+   "sha_verified_from": "revendor 2026-10-15: GitHub API commit lookup",
+   "previous_substitute": "https://github.com/OpenTOPAS/OpenTOPAS"
   }
  },
  "metrics": {
