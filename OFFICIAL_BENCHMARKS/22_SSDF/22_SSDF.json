@@ -1,0 +1,21 @@
+{
+ "framework": "22_SSDF",
+ "title": "NIST SP 800-218 SSDF v1.1",
+ "project": "GEANT4",
+ "basis": [
+  {
+   "check": "05_git_health",
+   "status": "PASS",
+   "observed": "head=7a48a447d41fca80fbaa70560fdccd1f603c9247 commits=1 clea"
+  },
+  {
+   "check": "07_owasp_top10",
+   "status": "PASS",
+   "observed": "9/9 controls evidenced (100.0%)"
+  }
+ ],
+ "verdict": "CONTROLS EVIDENCED \u2014 all basis checks PASS",
+ "pax_provenance": "Run ID loiskleinner/pax-benchmark-runner v3, 2026-10-02, Kaggle T4 x2 (2x 16GB VRAM), Ubuntu 22.04, Python 3.12. These are PAX L5 Narrow L2 General 27B model-level results \u2014 shared model component, not this project's verdict.",
+ "bench_sha3": "d401414929a6ac74c10571d1860dfb8c03bd44d8d202843b49e6019bc9c4b508",
+ "register_sha3": "c8a2ccc6a7780a7bbf14e141dcfcd134eda169770baf60362e208b989ba3b5eb"
+}
